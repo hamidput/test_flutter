@@ -17,7 +17,7 @@ class UserDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(user.login),
+        title: Text('${user.firstName} ${user.lastName}'),
         elevation: 0,
         backgroundColor: Theme.of(context).primaryColor,
       ),
@@ -47,13 +47,13 @@ class UserDetailScreen extends StatelessWidget {
                       ),
                       child: CircleAvatar(
                         radius: 50,
-                        backgroundImage: NetworkImage(user.avatarUrl),
+                        backgroundImage: NetworkImage(user.avatar),
                       ),
                     ),
                   ),
                   const SizedBox(height: 15),
                   Text(
-                    user.login,
+                    '${user.firstName} ${user.lastName}',
                     style: const TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
@@ -68,25 +68,28 @@ class UserDetailScreen extends StatelessWidget {
               child: Column(
                 children: [
                   _buildInfoCard(
-                    icon: Icons.link,
-                    title: 'GitHub Profile',
-                    subtitle: user.htmlUrl,
-                    onTap: () => _launchUrl(user.htmlUrl),
+                    icon: Icons.email,
+                    title: 'Email',
+                    subtitle: user.email,
                   ),
                   const SizedBox(height: 16),
                   _buildInfoCard(
-                    icon: Icons.people,
-                    title: 'Type',
-                    subtitle: user.avatarUrl,
+                    icon: Icons.person,
+                    title: 'First Name',
+                    subtitle: user.firstName,
                   ),
-                  if (user.login != null) ...[
-                    const SizedBox(height: 16),
-                    _buildInfoCard(
-                      icon: Icons.person,
-                      title: 'Name',
-                      subtitle: user.login,
-                    ),
-                  ],
+                  const SizedBox(height: 16),
+                  _buildInfoCard(
+                    icon: Icons.person_outline,
+                    title: 'Last Name',
+                    subtitle: user.lastName,
+                  ),
+                  const SizedBox(height: 16),
+                  _buildInfoCard(
+                    icon: Icons.numbers,
+                    title: 'User ID',
+                    subtitle: user.id.toString(),
+                  ),
                 ],
               ),
             ),

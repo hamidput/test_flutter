@@ -48,7 +48,7 @@ class _UserListScreenState extends State<UserListScreen> {
           ),
         ),
         title: const Text(
-          'GitHub Users',
+          'Users', // Changed from 'GitHub Users'
           style: TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.bold,
@@ -158,7 +158,7 @@ class _UserListScreenState extends State<UserListScreen> {
                     }
                     if (state is UserLoaded) {
                       final users = state.users
-                          .where((u) => u.login
+                          .where((u) => '${u.firstName} ${u.lastName}'
                               .toLowerCase()
                               .contains(_searchText.toLowerCase()))
                           .toList();
@@ -193,7 +193,7 @@ class _UserListScreenState extends State<UserListScreen> {
                             return const Center(
                               child: Padding(
                                 padding: EdgeInsets.all(16.0),
-                                child: CircularProgressIndicator(),
+                                child: Text("Last user reached."),
                               ),
                             );
                           }
